@@ -35,7 +35,7 @@ wezterm [OPTIONS] [COMMAND]
 | `connect` | 连接到 multiplexer |
 | `ls-fonts` | 字体信息 |
 | `show-keys` | 显示快捷键分配 |
-| `cli` | 与实验性 mux server 交互 |
+| `cli` | 与 mux server / 当前 GUI 实例交互（见下文） |
 | `imgcat` | 向终端输出图像 |
 | `set-working-directory` | 通过 OSC 7 告知当前目录 |
 | `record` / `replay` | 录制 / 回放 asciicast |
@@ -51,7 +51,7 @@ wezterm start --cwd /some/path
 Windows PowerShell 示例：
 
 ```powershell
-wezterm start -- cwd $HOME\projects
+wezterm start --cwd $HOME\projects
 ```
 
 ### 查看快捷键与字体
@@ -61,6 +61,41 @@ wezterm show-keys
 wezterm show-keys --lua
 wezterm ls-fonts
 wezterm ls-fonts --list-system
+```
+
+## `wezterm cli` 子命令
+
+在 WezTerm 窗格内运行时自动连接当前实例。以下子命令与 flag 已用 `wezterm cli <子命令> --help`（20240203-110809-5046fc22）核对，详见官方 [wezterm cli](https://wezterm.org/cli/cli/index.html)。
+
+| 子命令 | 作用 | 常用参数 |
+| --- | --- | --- |
+| `list` | 列出窗口 / 标签 / 窗格 | `--format json` |
+| `list-clients` | 列出已连接客户端 | `--format json` |
+| `spawn` | 新建标签（或窗口），输出新 pane-id | `--pane-id` `--domain-name` `--window-id` `--new-window` `--cwd` `--workspace`，`-- <命令>` |
+| `split-pane` | 分屏，输出新 pane-id | `--pane-id` `--left` `--right` `--top` `--bottom` `--horizontal` `--top-level` `--cells N` `--percent N` `--cwd` `--move-pane-id` |
+| `activate-pane` | 聚焦窗格 | `--pane-id` |
+| `activate-pane-direction` | 聚焦相邻窗格 | `Up` / `Down` / `Left` / `Right` / `Next` / `Prev`，`--pane-id` |
+| `get-pane-direction` | 查询相邻窗格 id | 方向，`--pane-id` |
+| `adjust-pane-size` | 调整窗格大小 | 方向，`--amount N`，`--pane-id` |
+| `zoom-pane` | 缩放窗格 | `--zoom` / `--unzoom` / `--toggle`，`--pane-id` |
+| `kill-pane` | 关闭窗格 | `--pane-id` |
+| `move-pane-to-new-tab` | 把窗格移到新标签 | `--pane-id` `--window-id` `--new-window` `--workspace` |
+| `activate-tab` | 切换标签 | `--tab-id` / `--tab-index` / `--tab-relative` / `--no-wrap`，`--pane-id` |
+| `send-text` | 向窗格发送文本（默认按括号粘贴） | `--pane-id` `--no-paste`，文本参数或 stdin |
+| `get-text` | 输出窗格文本 | `--pane-id` `--start-line` `--end-line` `--escapes` |
+| `set-tab-title` | 设置标签标题 | `--tab-id` / `--pane-id`，标题 |
+| `set-window-title` | 设置窗口标题 | `--window-id` / `--pane-id`，标题 |
+| `rename-workspace` | 重命名工作区 | `--workspace` / `--pane-id`，新名称 |
+
+```bash
+# 在右侧分出 30% 宽的窗格运行 htop
+wezterm cli split-pane --right --percent 30 -- htop
+# 新窗格在下方、固定 10 行
+wezterm cli split-pane --bottom --cells 10
+wezterm cli activate-pane-direction Left
+wezterm cli zoom-pane --toggle
+wezterm cli get-text --start-line -50   # 最近 50 行（含回滚区）
+wezterm cli list --format json
 ```
 
 ## 配置调试建议

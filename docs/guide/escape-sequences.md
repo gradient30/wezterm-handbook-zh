@@ -18,23 +18,29 @@ WezTerm 将终端输出视为 **UTF-8** 码点流，不支持其它字符编码�
 
 OSC 以 `ESC ]` 开始，参数常用 `;` 分隔，以 `ST`（`ESC \`）结束；WezTerm 也接受以 `BEL`（`0x07`）结尾。
 
-| OSC | 作用（概要） |
-| --- | --- |
-| `0` | 设置图标名与窗口标题 |
-| `1` | 设置图标名（常影响标签标题） |
-| `2` | 设置窗口标题 |
-| `7` | 设置当前工作目录（Shell 集成 / OSC 7） |
-| `8` | 超链接 |
-| `9` | 显示 toast 通知（iTerm2 风格） |
-| `10` / `11` / `12` | 默认前景 / 背景 / 光标颜色 |
-| `52` | 剪贴板操作（查询类请求会被忽略） |
-| `133` | FinalTerm 语义转义（提示符 / 输入 / 输出区） |
-| `1337` | iTerm2 图像协议等 |
+| OSC | 作用（摘自官方表） | 示例 |
+| --- | --- | --- |
+| `0` | 设置窗口标题，并**清空**图标名 | `\x1b]0;title\x1b\\` |
+| `1` | 设置图标名；非空时用作**标签标题** | `\x1b]1;tab-title\x1b\\` |
+| `2` | 设置窗口标题 | `\x1b]2;window-title\x1b\\` |
+| `4` | 设置 / 查询调色板 0–255 号颜色 | `\x1b]4;2;#cccccc\x1b\\` |
+| `7` | 设置当前工作目录（Shell 集成） | 见 [Shell Integration](https://wezterm.org/shell-integration.html) |
+| `8` | 显式超链接 | 见 [hyperlinks](https://wezterm.org/hyperlinks.html) |
+| `9` | 显示系统 toast 通知（iTerm2 风格） | `printf "\e]9;%s\e\\" "hello"` |
+| `10` / `11` / `12` | 默认前景 / 默认背景 / 光标颜色 | `\x1b]10;#ff0000\x1b\\` |
+| `52` | 设置 / 清空剪贴板（查询请求被忽略） | — |
+| `104` | 重置调色板为默认值 | — |
+| `133` | FinalTerm 语义转义（提示符 / 输入 / 输出区） | 见 Shell Integration |
+| `777` | rxvt 扩展，仅支持 `notify`（toast 通知） | `printf "\e]777;notify;%s;%s\e\\" "title" "body"` |
+| `1337` | iTerm2 协议（内联图片等） | 见 [iTerm Image Protocol](https://wezterm.org/imgcat.html) |
 
-示例（设置窗口标题）：
+`3`（X11 窗口属性）、`5`、`6` 被 WezTerm 忽略。
+
+示例（Bash：分别设置窗口标题与标签标题）：
 
 ```bash
-printf '\033]0;my-title\033\\'
+printf '\033]2;my-window\033\\'   # 窗口标题
+printf '\033]1;my-tab\033\\'      # 标签标题（图标名）
 ```
 
 ### CSI：控制序列

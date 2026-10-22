@@ -1,11 +1,11 @@
 # 玩法与配方
 
-以下片段可直接合并进 `.wezterm.lua`（假设文件开头已有 `local wezterm = require 'wezterm'`、`local act = wezterm.action`、`local config = wezterm.config_builder()`，结尾 `return config`）。多个片段都写 `config.keys` 时请合并为一个表。
+以下片段可直接合并进 `.wezterm.lua`（假设文件开头已有 `local wezterm = require 'wezterm'`、`local act = wezterm.action`、`local config = wezterm.config_builder()`，结尾 `return config`）。多个片段都写 `config.keys` 时请合并为一个表；使用 `table.insert(config.keys, ...)` 的片段要求先有 `config.keys = {}`（或 `config.keys = config.keys or {}`）。下列快捷键均为**自定义**绑定，非默认。
 
 ## 状态栏：时间 + 工作区
 
 ```lua
-wezterm.on('update-right-status', function(window, pane)
+wezterm.on('update-status', function(window, pane)
   window:set_right_status(wezterm.format {
     { Foreground = { Color = '#7aa2f7' } },
     { Text = '  ' .. window:active_workspace() .. '  ' },

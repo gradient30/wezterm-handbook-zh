@@ -42,7 +42,7 @@ return config
 
 ## 用工作区按项目隔离
 
-每个项目一个 [workspace](https://wezterm.org/recipes/workspaces.html)：AI 会话、终端历史和标签互不干扰。配合 [玩法与配方](/guide/recipes#inputselector-项目切换器-每个项目一个工作区) 中的项目切换器，或绑定工作区列表：
+每个项目一个 [workspace](https://wezterm.org/recipes/workspaces.html)：AI 会话、终端历史和标签互不干扰。配合 [玩法与配方](/guide/recipes#inputselector-项目切换器-每个项目一个工作区) 中的项目切换器，或绑定工作区列表（`Alt+W` 为**自定义**键）：
 
 ```lua
 config.keys = {
@@ -64,8 +64,10 @@ config.launch_menu = {
   { label = 'Aider',       args = { 'pwsh.exe', '-NoLogo', '-NoExit', '-Command', 'aider' } },
 }
 local act = wezterm.action
+config.keys = config.keys or {}
+-- 【自定义】Alt+L 打开启动器
 table.insert(config.keys, { key = 'l', mods = 'ALT', action = act.ShowLauncher })
--- 在当前窗格右侧分出一个 AI 窗格
+-- 【自定义】Ctrl+Shift+Alt+A：在当前窗格左侧分出占 60% 的 AI 窗格
 table.insert(config.keys, { key = 'A', mods = 'CTRL|SHIFT|ALT', action = act.SplitPane {
   direction = 'Left', size = { Percent = 60 },
   command = { args = { 'pwsh.exe', '-NoLogo', '-NoExit', '-Command', 'claude' } },
@@ -97,7 +99,7 @@ config.scrollback_lines = 20000   -- 默认 3500；AI 长输出建议调大
 
 ## 在长输出中搜索、复制 AI 的回答
 
-- `Ctrl+Shift+F` 搜索回滚区（匹配高亮，`Enter` 跳到下一个）。
+- `Ctrl+Shift+F` 搜索回滚区（匹配高亮，`Enter` / `Ctrl+P` 跳到上一个更早的匹配，`Ctrl+N` 下一个）。
 - `Ctrl+Shift+X` 进入 Copy Mode，键盘选择后 `y` 复制。
 - `Ctrl+Shift+Space` QuickSelect 一键复制文件路径、哈希、URL。
 - `Ctrl+Shift+Z` 放大当前窗格专心阅读。

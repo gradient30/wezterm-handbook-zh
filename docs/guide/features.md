@@ -1,6 +1,6 @@
 # 特有便捷性与独家功能
 
-本页梳理 WezTerm 区别于多数终端的能力，并给出最小可用配置。所有默认快捷键均以 [官方默认按键表](https://wezterm.org/config/default-keys.html) 为准（Windows / Linux 用 `Ctrl+Shift`，macOS 多为 `Super`）。
+本页梳理 WezTerm 区别于多数终端的能力，并给出最小可用配置。所有默认快捷键均以 [官方默认按键表](https://wezterm.org/config/default-keys.html) 为准（Windows / Linux 用 `Ctrl+Shift`；macOS 部分动作另有 `Cmd` 键位，如 `Cmd+F` 搜索、`Cmd+R` 重载，`Ctrl+Shift` 组合在 macOS 上同样有效）。
 
 ::: tip 截图说明
 本页截图均为 **真实截图**：在 Linux（X11）上运行 WezTerm 20240203-110809-5046fc22，配色 `Tokyo Night`，用 `ffmpeg -f x11grab` 抓取窗口。Windows 上界面一致，仅字体与窗口边框不同。
@@ -55,13 +55,13 @@ config.default_gui_startup_args = { 'connect', 'unix' }
 
 ## 5. Copy Mode `Ctrl+Shift+X`
 
-类似 vim 的键盘选择模式：`h/j/k/l` 移动、`v` 选择字符、`V` 选择行、`Ctrl+v` 块选、`y` 复制并退出，`Esc` 退出。
+类似 vim 的键盘选择模式：`h/j/k/l` 移动、`v` 选择字符、`Shift+V` 选择行、`Ctrl+V` 块选、`y` 复制并退出，`Esc` / `q` / `Ctrl+C` 退出。
 
 ![Copy Mode：用 v 与 k 选中多行输出](/images/04-copy-mode.webp)
 
 *图：Copy Mode 下的键盘选区（真实截图）。*
 
-`Ctrl+Shift+F` 搜索回滚区，匹配项高亮，`Enter`/`Ctrl+N`/`Ctrl+P` 在结果间跳转：
+`Ctrl+Shift+F` 搜索回滚区，匹配项高亮，`Enter` / `Ctrl+P` 跳到上一个匹配、`Ctrl+N` 跳到下一个匹配：
 
 ![搜索回滚区并高亮匹配](/images/05-search.webp)
 
@@ -69,7 +69,7 @@ config.default_gui_startup_args = { 'connect', 'unix' }
 
 ## 6. 超链接识别
 
-`hyperlink_rules` 用正则把文本变为可点击链接（默认 `Ctrl+Click` 打开），也支持程序输出的 OSC 8 显式超链接。可在默认规则基础上追加，例如把 `#123` 映射为 issue 链接。参见 [hyperlinks](https://wezterm.org/hyperlinks.html)。
+`hyperlink_rules` 用正则把文本变为可点击链接（默认左键单击即可打开；程序开启鼠标上报时可用 `Shift+单击` 绕过），也支持程序输出的 OSC 8 显式超链接。可在默认规则基础上追加，例如把 `#123` 映射为 issue 链接。参见 [hyperlinks](https://wezterm.org/hyperlinks.html)。
 
 ```lua
 config.hyperlink_rules = wezterm.default_hyperlink_rules()
@@ -110,9 +110,9 @@ config.ssh_domains = { { name = 'dev', remote_address = 'dev.example.com', usern
 
 *图：启动器（`ShowLauncher`），前 3 项来自 `launch_menu`（真实截图）。*
 
-## 11. 状态栏 `update-right-status`
+## 11. 状态栏 `update-status`
 
-窗口事件 [`update-right-status`](https://wezterm.org/config/lua/window-events/update-right-status.html) 周期触发（间隔由 `status_update_interval` 控制，默认 1000 ms），可调用 `window:set_right_status()` 显示时间、工作区、电量等。完整代码见 [玩法与配方](/guide/recipes#状态栏-时间-工作区)。
+窗口事件 [`update-status`](https://wezterm.org/config/lua/window-events/update-status.html)（旧名 `update-right-status` 已不推荐）周期触发（间隔由 `status_update_interval` 控制，默认 1000 ms），可调用 `window:set_left_status()` / `window:set_right_status()` 显示时间、工作区、电量等。完整代码见 [玩法与配方](/guide/recipes#状态栏-时间-工作区)。
 
 ## 12. 背景图、透明与跟随系统深浅色
 

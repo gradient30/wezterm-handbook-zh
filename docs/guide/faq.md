@@ -4,7 +4,7 @@
 
 1. 确认文件路径正确：Windows 推荐 `%USERPROFILE%\.wezterm.lua`。
 2. 确认扩展名不是 `.lua.txt`。
-3. 保存后按 `Ctrl+Shift+R` 强制重载，或新开一个 WezTerm 窗口。
+3. 保存后按 `Ctrl+Shift+R`（macOS `Cmd+R`）强制重载，或新开一个 WezTerm 窗口。
 4. 若配置有语法错误，WezTerm 会提示并回退默认配置——先修正 Lua 语法。
 5. 检查是否被命令行 `--config` / `--config-file` 覆盖。
 
@@ -47,14 +47,14 @@ config.scrollback_lines = 10000
 **建议**：
 
 ```lua
-config.bypass_mouse_reporting_modifiers = 'SHIFT'
+config.bypass_mouse_reporting_modifiers = 'SHIFT' -- 默认值
 ```
 
 然后使用：
 
-- **Shift + 滚轮** 滚动终端视口；
+- 按住 `Shift` + 滚轮 滚动终端视口；
 - `Shift+PageUp` / `Shift+PageDown` 按页滚动；
-- `Ctrl+Shift+Home` / `Ctrl+Shift+End`（若已绑定）跳到回滚两端。
+- `Ctrl+Shift+Home` / `Ctrl+Shift+End` 跳到回滚两端（**自定义**键，绑定方法见 [快捷键与滚动](./keys-scroll.md#自定义快捷键)）。
 
 这不能把 TUI 内部的虚拟列表「变成」终端回滚；只能在终端层面绕过鼠标上报。
 

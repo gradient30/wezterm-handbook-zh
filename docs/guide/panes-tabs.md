@@ -4,20 +4,37 @@ WezTerm 用 **标签（Tab）** 管理多个终端会话，用 **窗格（Pane�
 
 ## 标签
 
-常见操作（Windows / Linux 默认，请以 `wezterm show-keys` 为准）：
+默认快捷键（摘自 [官方默认键表](https://wezterm.org/config/default-keys.html)；macOS 把 `Ctrl+Shift` 换成 `Cmd` 亦可）：
 
-| 操作 | 快捷键（常见） |
-| --- | --- |
-| 新建标签 | `Ctrl+Shift+T` |
-| 关闭当前标签（关闭其中窗格） | `Ctrl+Shift+W` |
-| 切换标签 | `Ctrl+Tab` / `Ctrl+Shift+Tab` |
-| 按序号跳转 | `Ctrl+Shift+1` … 等（视版本与键表） |
+| 操作 | Windows / Linux | macOS |
+| --- | --- | --- |
+| 新建标签 | `Ctrl+Shift+T` | `Cmd+T` |
+| 关闭当前标签（含其中所有窗格，需确认） | `Ctrl+Shift+W` | `Cmd+W` |
+| 下一个 / 上一个标签 | `Ctrl+Tab` / `Ctrl+Shift+Tab`，或 `Ctrl+PageDown` / `Ctrl+PageUp` | `Cmd+Shift+]` / `Cmd+Shift+[` |
+| 跳到第 1–8 个标签 / 最后一个标签 | `Ctrl+Shift+1`…`8` / `Ctrl+Shift+9` | `Cmd+1`…`8` / `Cmd+9` |
+| 移动当前标签 | `Ctrl+Shift+PageUp` / `Ctrl+Shift+PageDown` | 同左 |
 
-启动器菜单：点击标签栏 `+` 右侧区域时，**右键**可打开启动器；也可绑定 `ShowLauncher` / `ShowLauncherArgs`。通过 `launch_menu` 可添加自定义启动项，见 [Launching Programs](https://wezterm.org/config/launch.html)。
+启动器菜单：在标签栏的 `+` 按钮上**右键**即可打开启动器；也可绑定 `ShowLauncher` / `ShowLauncherArgs`。通过 `launch_menu` 可添加自定义启动项，见 [Launching Programs](https://wezterm.org/config/launch.html)。
 
 ## 分屏（窗格）
 
-在配置中绑定分屏动作：
+### 默认分屏键
+
+| 操作 | 快捷键（全平台） | 动作 |
+| --- | --- | --- |
+| 上下分屏（新窗格在下方） | `Ctrl+Shift+Alt+"` | `SplitVertical { domain = 'CurrentPaneDomain' }` |
+| 左右分屏（新窗格在右侧） | `Ctrl+Shift+Alt+%` | `SplitHorizontal { domain = 'CurrentPaneDomain' }` |
+| 切换到相邻窗格 | `Ctrl+Shift+←/→/↑/↓` | `ActivatePaneDirection` |
+| 调整窗格大小 | `Ctrl+Shift+Alt+←/→/↑/↓` | `AdjustPaneSize` |
+| 窗格缩放 | `Ctrl+Shift+Z` | `TogglePaneZoomState` |
+
+::: tip
+WezTerm 的命名与 Vim 相反：`SplitHorizontal` = 左右排列，`SplitVertical` = 上下排列。默认**没有**关闭单个窗格的快捷键，可自定义绑定 `CloseCurrentPane`。
+:::
+
+### 自定义分屏键（非默认）
+
+以下绑定为**自定义**示例，写入 `config.keys` 后生效：
 
 ```lua
 local wezterm = require 'wezterm'
@@ -35,26 +52,13 @@ config.keys = {
     mods = 'CTRL|SHIFT',
     action = act.SplitVertical { domain = 'CurrentPaneDomain' },
   },
-  {
-    key = 'LeftArrow',
-    mods = 'CTRL|SHIFT',
-    action = act.ActivatePaneDirection 'Left',
-  },
-  {
-    key = 'RightArrow',
-    mods = 'CTRL|SHIFT',
-    action = act.ActivatePaneDirection 'Right',
-  },
-  {
-    key = 'UpArrow',
-    mods = 'CTRL|SHIFT',
-    action = act.ActivatePaneDirection 'Up',
-  },
-  {
-    key = 'DownArrow',
-    mods = 'CTRL|SHIFT',
-    action = act.ActivatePaneDirection 'Down',
-  },
+  -- Alt+方向键 切换窗格（默认的 Ctrl+Shift+方向键 仍然可用）
+  { key = 'LeftArrow', mods = 'ALT', action = act.ActivatePaneDirection 'Left' },
+  { key = 'RightArrow', mods = 'ALT', action = act.ActivatePaneDirection 'Right' },
+  { key = 'UpArrow', mods = 'ALT', action = act.ActivatePaneDirection 'Up' },
+  { key = 'DownArrow', mods = 'ALT', action = act.ActivatePaneDirection 'Down' },
+  -- 关闭当前窗格（默认无此键）
+  { key = 'w', mods = 'CTRL|SHIFT|ALT', action = act.CloseCurrentPane { confirm = true } },
 }
 
 return config
@@ -74,15 +78,19 @@ exit
 
 ::: warning 不是「退出分屏模式」的专用命令
 WezTerm **没有**名为「exit split mode」的独立模式命令。`exit` 结束的是当前窗格里的 shell，而不是某种分屏编辑模式。  
-若只想关掉某个分屏，应关闭该窗格（例如 `Ctrl+Shift+W` 或对应 Close 动作），或让该窗格内进程退出。
+若只想关掉某个分屏，应关闭该窗格（绑定 `CloseCurrentPane` 动作；注意默认的 `Ctrl+Shift+W` 关闭的是**整个标签**），或让该窗格内进程退出。
 :::
 
 相关配置示例：
 
 ```lua
--- 进程退出后是否保持窗格（Hold）或关闭等，详见官方文档
--- config.exit_behavior = 'Close' -- 或 'Hold' 等，以当前版本文档为准
+-- 'Close'（默认）：进程退出即关闭窗格
+-- 'CloseOnCleanExit'：仅退出码为 0 时关闭
+-- 'Hold'：始终保留窗格，需手动关闭
+config.exit_behavior = 'Close'
 ```
+
+参见 [exit_behavior](https://wezterm.org/config/lua/config/exit_behavior.html)。
 
 ## 标签标题
 
