@@ -47,6 +47,9 @@ export default defineConfig({
     },
     nav: [
       { text: '手册', link: '/guide/install' },
+      { text: '独家功能', link: '/guide/features' },
+      { text: '配方', link: '/guide/recipes' },
+      { text: 'AI 编程', link: '/guide/ai-coding' },
       { text: 'FAQ', link: '/guide/faq' },
       { text: '官方文档', link: 'https://wezterm.org' },
     ],
@@ -65,6 +68,9 @@ export default defineConfig({
           { text: '外观与标签栏', link: '/guide/appearance' },
           { text: '快捷键与滚动', link: '/guide/keys-scroll' },
           { text: '分屏与标签', link: '/guide/panes-tabs' },
+          { text: '特有便捷性与独家功能', link: '/guide/features' },
+          { text: '玩法与配方', link: '/guide/recipes' },
+          { text: 'AI 编程使用方案', link: '/guide/ai-coding' },
         ],
       },
       {
