@@ -9,11 +9,17 @@ hero:
       text: 开始阅读
       link: /guide/install
     - theme: alt
+      text: 可视化配置生成器
+      link: /guide/config-builder
+    - theme: alt
       text: 官方文档 wezterm.org
       link: https://wezterm.org
 features:
   - title: 配置即 Lua
     details: 使用 .wezterm.lua 声明外观、启动程序、快捷键与标签栏，修改后自动热重载。
+  - title: 可视化配置
+    details: 交互式勾选人群预设与选项，实时生成可复制的 .wezterm.lua；也可下载仓库起步配置。
+    link: /guide/config-builder
   - title: Windows 友好
     details: 覆盖配置路径、PowerShell 7（pwsh）、标签颜色、滚动条与 TUI 鼠标穿透等实用主题。
   - title: 独家功能一览
@@ -35,6 +41,7 @@ features:
 | --- | --- |
 | [安装与入门](/guide/install) | 安装、首次启动、配置位置 |
 | [配置文件](/guide/config) | 查找顺序、`config_builder`、模块拆分 |
+| [可视化配置](/guide/config-builder) | 交互式生成器 + 下载起步 `wezterm.lua` |
 | [外观与标签栏](/guide/appearance) | 配色、字体、标签标题与颜色 |
 | [快捷键与滚动](/guide/keys-scroll) | 常用键、滚动条、TUI 滚动技巧 |
 | [分屏与标签](/guide/panes-tabs) | 分屏、标签、`exit` 的含义 |

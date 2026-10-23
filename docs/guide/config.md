@@ -24,6 +24,12 @@ Windows 用户优先使用 `%USERPROFILE%\.wezterm.lua`。需要拆分多文件�
 
 当前版本中，若候选文件存在但解析失败，会显示错误并使用内置默认配置（不会静默跳到下一个候选路径）。
 
+
+
+::: tip 不想手写？
+可用 [可视化配置](/guide/config-builder) 勾选预设生成 `.wezterm.lua`，或直接下载起步文件 [wezterm.lua](/wezterm.lua)。
+:::
+
 ## 基本结构
 
 空配置：

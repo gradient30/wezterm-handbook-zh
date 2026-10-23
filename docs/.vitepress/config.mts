@@ -7,6 +7,8 @@ export default defineConfig({
   base: '/wezterm-handbook-zh/',
   cleanUrls: true,
   lastUpdated: true,
+  // public/wezterm.lua is a static asset, not a markdown page
+  ignoreDeadLinks: [/\/wezterm\.lua$/],
 
   head: [
     ['meta', { name: 'theme-color', content: '#3c82f6' }],
@@ -47,6 +49,7 @@ export default defineConfig({
     },
     nav: [
       { text: '手册', link: '/guide/install' },
+      { text: '可视化配置', link: '/guide/config-builder' },
       { text: '独家功能', link: '/guide/features' },
       { text: '配方', link: '/guide/recipes' },
       { text: 'AI 编程', link: '/guide/ai-coding' },
@@ -60,6 +63,7 @@ export default defineConfig({
           { text: '介绍', link: '/' },
           { text: '安装与入门', link: '/guide/install' },
           { text: '配置文件', link: '/guide/config' },
+          { text: '可视化配置', link: '/guide/config-builder' },
         ],
       },
       {
