@@ -43,7 +43,20 @@
 
 ## 自定义快捷键
 
-以下均为**自定义**绑定（非官方默认），写入 `config.keys` 后生效；它们与默认键并存。
+以下均为**自定义**绑定（非官方默认），写入 `config.keys` 后生效；它们与默认键并存。默认分屏仍是 `Ctrl+Shift+Alt+"` / `%`，下面推荐的 `|` / `-` **不会**覆盖默认键。
+
+### 【社区常用自定义】更顺手的分屏键
+
+许多用户觉得默认分屏要多按一个 `Alt` 太别扭（见 [Discussion #5248](https://github.com/wezterm/wezterm/discussions/5248)、[Issue #6245](https://github.com/wezterm/wezterm/issues/6245)）。社区常见写法是：
+
+| 操作 | 按键（用户手势） | Lua `key`（美式键盘） | 动作 |
+| --- | --- | --- | --- |
+| 左右分屏 | `Ctrl+Shift+\|` | `'\|'` | `SplitHorizontal` |
+| 上下分屏 | `Ctrl+Shift+-` | `'_'` | `SplitVertical` |
+
+::: tip 为什么上下分屏写 `key = '_'` 而不是 `'-'`？
+默认 `key_map_preference = "Mapped"`：按住 `Shift` 时匹配的是**产生的字符**。美式 / 多数 Windows 键盘上 `Shift+-` 产生 `_`，与官方默认键写 `'"'` / `'%'`（同样带 `SHIFT`）同理。社区示例（如 [AlexAllocated keymaps](https://github.com/AlexAllocated/.dotfiles/blob/e93b84c2a3913bd48a10f82cbe32de28cb4ab5b5/wezterm/keymaps.lua)）也普遍用 `\|` + `_`。若你改成 `Physical` 或绑定无效，可再试 `key = 'phys:-'`。
+:::
 
 ```lua
 local wezterm = require 'wezterm'
@@ -57,7 +70,8 @@ config.keys = {
     mods = 'CMD',
     action = act.DisableDefaultAssignment,
   },
-  -- 【自定义】Ctrl+Shift+| 左右分屏、Ctrl+Shift+_ 上下分屏（非默认键）
+  -- 【社区常用自定义】Ctrl+Shift+| 左右 · Ctrl+Shift+- 上下
+  -- （Lua 用 '_'：Mapped 下 Shift+- → _；默认 Ctrl+Shift+Alt+" / % 仍可用）
   {
     key = '|',
     mods = 'CTRL|SHIFT',

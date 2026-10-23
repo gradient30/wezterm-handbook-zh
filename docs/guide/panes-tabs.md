@@ -32,9 +32,14 @@ WezTerm 用 **标签（Tab）** 管理多个终端会话，用 **窗格（Pane�
 WezTerm 的命名与 Vim 相反：`SplitHorizontal` = 左右排列，`SplitVertical` = 上下排列。默认**没有**关闭单个窗格的快捷键，可自定义绑定 `CloseCurrentPane`。
 :::
 
-### 自定义分屏键（非默认）
+### 【默认】vs 【社区常用自定义】
 
-以下绑定为**自定义**示例，写入 `config.keys` 后生效：
+| 来源 | 左右分屏 | 上下分屏 |
+| --- | --- | --- |
+| 【默认】 | `Ctrl+Shift+Alt+%` | `Ctrl+Shift+Alt+"` |
+| 【社区常用自定义】 | `Ctrl+Shift+\|` | `Ctrl+Shift+-`（Lua：`key = '_'`） |
+
+默认三键组合仍有效；自定义是**叠加**，不是替换。美式键盘上 `Shift+-` → `_`，故 Mapped 偏好下写 `key = '_'`（详见 [快捷键与滚动](./keys-scroll.md#社区常用自定义更顺手的分屏键)）。
 
 ```lua
 local wezterm = require 'wezterm'
@@ -42,13 +47,14 @@ local act = wezterm.action
 local config = wezterm.config_builder()
 
 config.keys = {
+  -- 【社区常用自定义】Ctrl+Shift+| 左右 · Ctrl+Shift+- 上下
   {
     key = '|',
     mods = 'CTRL|SHIFT',
     action = act.SplitHorizontal { domain = 'CurrentPaneDomain' },
   },
   {
-    key = '_',
+    key = '_', -- 对应用户手势 Ctrl+Shift+-
     mods = 'CTRL|SHIFT',
     action = act.SplitVertical { domain = 'CurrentPaneDomain' },
   },
@@ -57,7 +63,7 @@ config.keys = {
   { key = 'RightArrow', mods = 'ALT', action = act.ActivatePaneDirection 'Right' },
   { key = 'UpArrow', mods = 'ALT', action = act.ActivatePaneDirection 'Up' },
   { key = 'DownArrow', mods = 'ALT', action = act.ActivatePaneDirection 'Down' },
-  -- 关闭当前窗格（默认无此键）
+  -- 关闭当前窗格（默认无此键；勿用 Ctrl+Shift+X，会盖掉 Copy Mode）
   { key = 'w', mods = 'CTRL|SHIFT|ALT', action = act.CloseCurrentPane { confirm = true } },
 }
 

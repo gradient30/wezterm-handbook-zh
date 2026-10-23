@@ -24,8 +24,8 @@
 
 | 预设 | 适合谁 | 大致开启内容 |
 | --- | --- | --- |
-| **轻度日常** `light` | 只想换字体 / Shell / 滚动条 | Shell、字体、滚动条、回滚 10000、默认快捷键注释；无 Leader、无花哨状态栏、无分屏定制、无 AI 键 |
-| **开发者** `dev` | 日常编码 | light + 彩色标签、分屏键（`Ctrl+Shift+\|` / `_`）、Alt 切窗格、搜索相关说明、`Shift` 穿透鼠标、`Ctrl+Shift+Home/End` |
+| **轻度日常** `light` | 只想换字体 / Shell / 滚动条 | Shell、字体、滚动条、回滚 10000、默认快捷键注释、社区分屏 `Ctrl+Shift+\\|`/`-`；无 Leader、无花哨状态栏、无 AI 键 |
+| **开发者** `dev` | 日常编码 | light + 彩色标签、分屏键（`Ctrl+Shift+\|` / `Ctrl+Shift+-`，Lua `_`）、Alt 切窗格、搜索相关说明、`Shift` 穿透鼠标、`Ctrl+Shift+Home/End` |
 | **AI 编程重度** `ai` | Claude Code / Codex / Gemini CLI 等 | dev + 回滚 50000、滚动条、AI 注释、可选工作区键 / 旁开分屏、可选响铃 Toast |
 | **运维多会话** `ops` | 多工作区 / 类 tmux | ai + `update-status` 状态栏 + Leader=`Ctrl+A` 与工作区切换 |
 | **自定义** `custom` | 自己勾选 | 切换预设后再改开关；选 custom 会保留当前勾选 |
@@ -44,7 +44,7 @@
 2. **字体与外观** — `font_with_fallback`、字号、配色、透明度、Windows Acrylic
 3. **滚动与鼠标** — 滚动条、`scrollback_lines`、`bypass_mouse_reporting_modifiers`、打字隐藏指针
 4. **标签栏** — `use_fancy_tab_bar`、`tab_max_width`、彩色 `format-tab-title`、标签栏背景
-5. **分屏与窗格** — 自定义分屏键、Alt 方向键、关闭窗格
+5. **分屏与窗格** — 社区常用 `Ctrl+Shift+\|` / `-`（叠加默认）、Alt 方向键、关闭窗格
 6. **滚动快捷键** — 补充 `Ctrl+Shift+Home/End`（Page 滚动仍是默认）
 7. **常用工具键** — 仅注释说明默认 `T/W/F/P/R/C/V` 等，避免重复绑定
 8. **Leader 键（重度）** — `Ctrl+A` + 类 tmux 绑定（默认关，ops 开）

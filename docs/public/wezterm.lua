@@ -92,10 +92,13 @@ end)
 -- Ctrl+Shift+T 新建标签 · Ctrl+Shift+W 关闭标签 · Ctrl+Tab 切换标签
 -- Ctrl+Shift+F 搜索 · Ctrl+Shift+P 命令面板 · Ctrl+Shift+R 重载
 -- Ctrl+Shift+C/V 复制粘贴 · Shift+PageUp/Down 按页滚 · Ctrl+=/-/0 字体
--- Ctrl+Shift+Alt+" SplitVertical(上下) · Ctrl+Shift+Alt+% SplitHorizontal(左右)
+-- 【默认】分屏: Ctrl+Shift+Alt+" SplitVertical(上下) · Ctrl+Shift+Alt+% SplitHorizontal(左右)
 -- 手册: https://gradient30.github.io/wezterm-handbook-zh/guide/keys-scroll
 
--- 【已启用】自定义分屏 Ctrl+Shift+| 与 _（SplitHorizontal=左右 · SplitVertical=上下）
+-- 【已启用】【社区常用自定义】分屏 Ctrl+Shift+|（左右）与 Ctrl+Shift+-（上下）
+-- SplitHorizontal=左右 · SplitVertical=上下；与上面默认三键并存
+-- 美式/Win 键盘 Mapped 下 Shift+- 产生 '_'，故 key 写 '_'（不是 '-'）
+-- 若无效可再试: key = 'phys:-'
 table.insert(config.keys, { key = '|', mods = 'CTRL|SHIFT', action = act.SplitHorizontal { domain = 'CurrentPaneDomain' } })
 table.insert(config.keys, { key = '_', mods = 'CTRL|SHIFT', action = act.SplitVertical { domain = 'CurrentPaneDomain' } })
 
@@ -105,8 +108,8 @@ table.insert(config.keys, { key = 'RightArrow', mods = 'ALT', action = act.Activ
 table.insert(config.keys, { key = 'UpArrow', mods = 'ALT', action = act.ActivatePaneDirection 'Up' })
 table.insert(config.keys, { key = 'DownArrow', mods = 'ALT', action = act.ActivatePaneDirection 'Down' })
 
--- 【已启用】关闭当前窗格
-table.insert(config.keys, { key = 'x', mods = 'CTRL|SHIFT', action = act.CloseCurrentPane { confirm = true } })
+-- 【已启用】关闭当前窗格（Ctrl+Shift+Alt+W；避免占用默认 Copy Mode 的 Ctrl+Shift+X）
+table.insert(config.keys, { key = 'w', mods = 'CTRL|SHIFT|ALT', action = act.CloseCurrentPane { confirm = true } })
 
 -- 【已启用】滚到顶部/底部
 table.insert(config.keys, { key = 'Home', mods = 'CTRL|SHIFT', action = act.ScrollToTop })

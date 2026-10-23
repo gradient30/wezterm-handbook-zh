@@ -58,7 +58,22 @@ config.bypass_mouse_reporting_modifiers = 'SHIFT' -- 默认值
 
 这不能把 TUI 内部的虚拟列表「变成」终端回滚；只能在终端层面绕过鼠标上报。
 
+## 默认分屏键按了没反应？想改成 `Ctrl+Shift+|` / `-`？
+
+默认分屏是 **`Ctrl+Shift+Alt+"`**（上下）与 **`Ctrl+Shift+Alt+%`**（左右），三个修饰键缺一不可（[Discussion #5248](https://github.com/wezterm/wezterm/discussions/5248)）。美式键盘上 `"` / `%` 本身还要 `Shift`。
+
+社区常用自定义（与默认**并存**）：
+
+```lua
+{ key = '|', mods = 'CTRL|SHIFT', action = act.SplitHorizontal { domain = 'CurrentPaneDomain' } },
+{ key = '_', mods = 'CTRL|SHIFT', action = act.SplitVertical { domain = 'CurrentPaneDomain' } },
+-- key='_' 对应手势 Ctrl+Shift+-（Mapped 下 Shift+- → _）
+```
+
+完整说明见 [分屏与标签](./panes-tabs.md) / [快捷键与滚动](./keys-scroll.md)。
+
 ## `exit` 能不能退出分屏模式？
+
 
 不能把它理解成「退出分屏模式」的专用指令。`exit` 结束的是 **当前窗格中的 shell 会话**；进程结束后窗格通常关闭。分屏只是多个窗格的布局，没有单独的 exit-split-mode 命令。详见 [分屏与标签](./panes-tabs.md)。
 

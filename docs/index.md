@@ -44,7 +44,7 @@ features:
 | [可视化配置](/guide/config-builder) | 交互式生成器 + 下载起步 `wezterm.lua` |
 | [外观与标签栏](/guide/appearance) | 配色、字体、标签标题与颜色 |
 | [快捷键与滚动](/guide/keys-scroll) | 常用键、滚动条、TUI 滚动技巧 |
-| [分屏与标签](/guide/panes-tabs) | 分屏、标签、`exit` 的含义 |
+| [分屏与标签](/guide/panes-tabs) | 默认 vs 社区分屏键、标签、`exit` 的含义 |
 | [特有便捷性与独家功能](/guide/features) | 多路复用、命令面板、QuickSelect、工作区等 |
 | [玩法与配方](/guide/recipes) | 可直接复制的 Lua 配方 |
 | [AI 编程使用方案](/guide/ai-coding) | AI CLI 分屏布局、提醒与脚本化 |

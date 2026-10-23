@@ -16,6 +16,8 @@
 
 **建议**：AI 窗格占 55–65% 宽度，便于阅读 diff；右侧上方执行命令、下方跑 `npm test -- --watch` 或 `Get-Content -Wait` 跟踪日志。
 
+分屏快捷键：【默认】`Ctrl+Shift+Alt+%` / `"`；【社区常用自定义】`Ctrl+Shift+|`（左右）与 `Ctrl+Shift+-`（上下，Lua `key = '_'`）。见 [分屏与标签](./panes-tabs.md)。
+
 ## gui-startup：启动即自动布局
 
 [`gui-startup`](https://wezterm.org/config/lua/gui-events/gui-startup.html) 事件在 GUI 启动时触发，可用 `wezterm.mux` 创建窗口和分屏：

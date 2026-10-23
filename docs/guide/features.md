@@ -15,7 +15,8 @@
 | QuickSelect | `Ctrl+Shift+Space` | [quickselect](https://wezterm.org/quickselect.html) |
 | Copy Mode | `Ctrl+Shift+X` | [copymode](https://wezterm.org/copymode.html) |
 | 搜索回滚区 | `Ctrl+Shift+F` | [Search](https://wezterm.org/config/lua/keyassignment/Search.html) |
-| 分屏 | `Ctrl+Shift+Alt+"`（上下）/ `Ctrl+Shift+Alt+%`（左右） | [default-keys](https://wezterm.org/config/default-keys.html) |
+| 分屏（【默认】） | `Ctrl+Shift+Alt+"`（上下）/ `Ctrl+Shift+Alt+%`（左右） | [default-keys](https://wezterm.org/config/default-keys.html) |
+| 分屏（【社区常用自定义】） | `Ctrl+Shift+\\|`（左右）/ `Ctrl+Shift+-`（上下，Lua `key='_'`） | 见 [分屏与标签](./panes-tabs.md) |
 | 窗格缩放 | `Ctrl+Shift+Z` | [TogglePaneZoomState](https://wezterm.org/config/lua/keyassignment/TogglePaneZoomState.html) |
 | 调试浮层 / Lua REPL | `Ctrl+Shift+L` | [ShowDebugOverlay](https://wezterm.org/config/lua/keyassignment/ShowDebugOverlay.html) |
 
