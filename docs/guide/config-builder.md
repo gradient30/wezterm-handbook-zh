@@ -5,7 +5,7 @@
 ## 打开生成器
 
 - 可视化 Page：[WezTerm 可视化配置生成器](https://cursor.com/canvas/store-5a558b8d-8fd6-47e7-ba7c-ef09c785d456/f81fac06-99e6-4119-8421-c1f9b07c9eed)
-- 本仓库也可直接下载起步配置：[wezterm.lua](/wezterm.lua)（Windows + 开发者 / AI 偏向精简版）
+- 本仓库也可直接下载起步配置（请用下方**外链**，勿点站内相对路径）：见 [下载本仓库起步配置](#下载本仓库起步配置)（Windows + 开发者 / AI 偏向精简版）
 
 ::: tip 局限说明
 生成器页面状态**不会**在刷新后保留；若浏览器沙箱限制剪贴板，请手动选中预览区文本复制。
@@ -14,7 +14,7 @@
 ## 三步上手
 
 1. 在生成器里选 **人群预设** 与 **操作系统**，按需微调开关与字体 / Shell 路径。
-2. 点「复制配置」，或从本页下载 [`wezterm.lua`](/wezterm.lua)。
+2. 点「复制配置」，或从下方 [下载本仓库起步配置](#下载本仓库起步配置) 用外链保存。
 3. 保存为：
    - Windows：`%USERPROFILE%\.wezterm.lua`（例如 `C:\Users\admin\.wezterm.lua`）
    - Linux / macOS：`~/.wezterm.lua`
@@ -60,13 +60,22 @@
 
 ## 下载本仓库起步配置
 
+::: tip 为什么不用站内相对链接？
+站内相对链接（如 `/wezterm.lua`）会被 **VitePress SPA 客户端路由**拦成软 404（页面显示 PAGE NOT FOUND），即使静态文件其实存在。请用下方**绝对外链**下载。
+:::
+
+推荐按顺序尝试（国内网络优先 raw / jsDelivr）：
+
+1. **Primary（raw）**：[wezterm.lua](https://raw.githubusercontent.com/gradient30/wezterm-handbook-zh/gh-pages/wezterm.lua)
+2. **Mirror（jsDelivr）**：[wezterm.lua](https://cdn.jsdelivr.net/gh/gradient30/wezterm-handbook-zh@gh-pages/wezterm.lua)
+3. **备用路径（github.io/downloads）**：[wezterm-starter.lua](https://gradient30.github.io/wezterm-handbook-zh/downloads/wezterm-starter.lua)
+4. **github.io 根路径（第三选项）**：[wezterm.lua](https://gradient30.github.io/wezterm-handbook-zh/wezterm.lua) — 请**新标签打开**或**右键另存为**；若看到站点「PAGE NOT FOUND」软 404，改用上面的 raw / jsDelivr。
+
 ```powershell
-# PowerShell 示例：下载到用户目录（请按需改 URL / 路径）
-Invoke-WebRequest -Uri 'https://gradient30.github.io/wezterm-handbook-zh/wezterm.lua' `
+# PowerShell：用 raw.githubusercontent.com（下载更可靠）
+Invoke-WebRequest -Uri 'https://raw.githubusercontent.com/gradient30/wezterm-handbook-zh/gh-pages/wezterm.lua' `
   -OutFile "$env:USERPROFILE\.wezterm.lua"
 ```
-
-或浏览器打开：[wezterm.lua](/wezterm.lua) → 另存为 `%USERPROFILE%\.wezterm.lua`。
 
 该文件默认已启用开发者 + AI 常用项；Leader / 状态栏 / Acrylic / Toast 等重度项保持注释，可按需取消注释。
 

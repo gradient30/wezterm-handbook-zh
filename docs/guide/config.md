@@ -27,7 +27,7 @@ Windows 用户优先使用 `%USERPROFILE%\.wezterm.lua`。需要拆分多文件�
 
 
 ::: tip 不想手写？
-可用 [可视化配置](/guide/config-builder) 勾选预设生成 `.wezterm.lua`，或直接下载起步文件 [wezterm.lua](/wezterm.lua)。
+可用 [可视化配置](/guide/config-builder) 勾选预设生成 `.wezterm.lua`，或用外链下载起步文件：[raw](https://raw.githubusercontent.com/gradient30/wezterm-handbook-zh/gh-pages/wezterm.lua) / [jsDelivr](https://cdn.jsdelivr.net/gh/gradient30/wezterm-handbook-zh@gh-pages/wezterm.lua) / [downloads](https://gradient30.github.io/wezterm-handbook-zh/downloads/wezterm-starter.lua)（勿用站内 `/wezterm.lua` 相对链接，会被 VitePress 软 404）。
 :::
 
 ## 基本结构
