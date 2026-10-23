@@ -39,6 +39,10 @@ WezTerm 的命名与 Vim 相反：`SplitHorizontal` = 左右排列，`SplitVerti
 | 【默认】 | `Ctrl+Shift+Alt+%` | `Ctrl+Shift+Alt+"` |
 | 【社区常用自定义】 | `Ctrl+Shift+\|` | `Ctrl+Shift+-`（Lua：`key = '_'`） |
 
+![效果预览：左右+上下分屏](/images/13-splits.webp)
+
+*效果预览：`Ctrl+Shift+|` 左右、`Ctrl+Shift+-` 上下（真实 WezTerm 截图）。*
+
 默认三键组合仍有效；自定义是**叠加**，不是替换。美式键盘上 `Shift+-` → `_`，故 Mapped 偏好下写 `key = '_'`（详见 [快捷键与滚动](./keys-scroll.md#社区常用自定义更顺手的分屏键)）。
 
 ```lua
@@ -106,3 +110,9 @@ config.exit_behavior = 'Close'
 
 - [CLI 与进阶](./cli.md)
 - [FAQ](./faq.md)
+
+## 窗格缩放预览
+
+![效果预览：窗格缩放](/images/07-pane-zoom.webp)
+
+*效果预览：`TogglePaneZoomState`（`Ctrl+Shift+Z`）后活动窗格占满标签（真实 WezTerm 截图）。*

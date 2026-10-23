@@ -97,6 +97,10 @@ config.enable_scroll_bar = true
 config.scrollback_lines = 20000   -- 默认 3500；AI 长输出建议调大
 ```
 
+![效果预览：滚动条便于回看 AI 长输出](/images/11-scrollbar-on.webp)
+
+*效果预览：开启滚动条后可拖动回看（真实 WezTerm 截图）。*
+
 注意：程序处于备用屏幕（全屏 TUI）时，其内部内容不进入 WezTerm 回滚区，应使用该工具自身的滚动方式。
 
 ## 在长输出中搜索、复制 AI 的回答

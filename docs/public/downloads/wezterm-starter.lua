@@ -11,6 +11,9 @@
 -- · 【已启用】段落已生效
 -- · 【默认关闭】段落整段注释；去掉行首 -- 即可启用
 -- · 本文件面向 Windows + PowerShell 7（pwsh）；其它系统请改 default_prog / 字体
+-- · 效果预览图廊: https://gradient30.github.io/wezterm-handbook-zh/guide/preview-gallery
+-- · 命令面板内置项为英文（官方无 UI 汉化）；可用 augment-command-palette / InputSelector / launch_menu.label 写中文
+--   详见: https://gradient30.github.io/wezterm-handbook-zh/guide/faq#内置命令-命令面板能不能汉化
 -- =============================================================================
 
 local wezterm = require 'wezterm'

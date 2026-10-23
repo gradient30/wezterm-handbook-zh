@@ -24,6 +24,10 @@ table.insert(config.keys, {
 })
 ```
 
+![效果预览：社区分屏键布局](/images/13-splits.webp)
+
+*效果预览：开启后左右+上下三分屏（真实 WezTerm 截图）。*
+
 ### 2. 从 tmux 迁过来 → Leader 键 + 内置 mux
 
 **痛点**：再学一套 tmux 快捷键，或与 WezTerm 内置分屏冲突。社区常设 `leader = Ctrl+A`（或 `Ctrl+B`），用 `LEADER` 绑定分屏 / 切窗格 / 新标签；不少人直接弃用 tmux、改用 WezTerm mux（[r/wezterm 示例](https://www.reddit.com/r/wezterm/comments/1fy21ft/trouble_with_catppuccin_and_tmux/)、官方 [Leader Key](https://wezterm.org/config/keys.html#leader-key)、[johnlindquist 配置 gist](https://gist.github.com/johnlindquist/346e18fd6875ae4207a9b69c62071e9a)）。
@@ -41,6 +45,10 @@ config.bypass_mouse_reporting_modifiers = 'SHIFT'
 config.enable_scroll_bar = true
 config.scrollback_lines = 50000  -- AI / 长构建日志常见取值
 ```
+
+![效果预览：大回滚 + 滚动条](/images/11-scrollbar-on.webp)
+
+*效果预览：`enable_scroll_bar = true`（真实 WezTerm 截图）。*
 
 其它高频话题（配色与状态栏、Windows `default_prog` / WSL 域、`font_with_fallback` 中文、命令面板 / QuickSelect / Copy Mode）见 [特有便捷性](./features.md) 与 [AI 编程](./ai-coding.md)。高星参考配置：[KevinSilvester/wezterm-config](https://github.com/KevinSilvester/wezterm-config)（1k+ ★）。
 
@@ -77,6 +85,11 @@ end)
 ```
 
 ## 类 tmux 的 Leader 键
+
+![效果预览：Leader 激活](/images/20-leader-active.webp)
+
+*效果预览：Leader 按下后状态提示（真实 WezTerm 截图）。*
+
 
 ```lua
 config.leader = { key = 'a', mods = 'CTRL', timeout_milliseconds = 1000 }
@@ -158,6 +171,11 @@ table.insert(config.keys, { key = 'E', mods = 'CTRL|SHIFT', action = act.PromptI
 也可在命令行执行 `wezterm cli set-tab-title "名称"`。
 
 ## InputSelector 项目切换器（每个项目一个工作区）
+
+![效果预览：InputSelector 中文标签](/images/15-input-selector-zh.webp)
+
+*效果预览：`choices[].label` 可用中文（真实 WezTerm 截图）。*
+
 
 ```lua
 local projects = {

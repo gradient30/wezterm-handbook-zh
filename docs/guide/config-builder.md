@@ -11,6 +11,18 @@
 生成器页面状态**不会**在刷新后保留；若浏览器沙箱限制剪贴板，请手动选中预览区文本复制。
 :::
 
+
+## 开启后长什么样？
+
+生成器里的开关对应手册中的真实截图。勾选前可先看：
+
+- [效果图廊](./preview-gallery.md)（滚动条、分屏、命令面板、状态栏、Leader…）
+- 命令面板语言：[FAQ · 内置命令能不能汉化](./faq.md#内置命令-命令面板能不能汉化)（**官方无 UI 汉化**；可用 `augment-command-palette` / `InputSelector` 追加中文）
+
+::: tip Windows Acrylic
+`win32_system_backdrop = 'Acrylic'` 为 **Windows 专属**。Linux 手册截图只能示意半透明（`window_background_opacity`），不能代替亚克力模糊效果。
+:::
+
 ## 三步上手
 
 1. 在生成器里选 **人群预设** 与 **操作系统**，按需微调开关与字体 / Shell 路径。

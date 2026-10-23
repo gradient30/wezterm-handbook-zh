@@ -106,6 +106,10 @@ return config
 
 ### Leader 键（可选，自定义）
 
+![效果预览：Leader 激活提示](/images/20-leader-active.webp)
+
+*效果预览：按下 Leader（示例 `Ctrl+A`）后状态栏显示 `LEADER`（真实 WezTerm 截图；需自行用 `update-status` + `window:leader_is_active()` 实现提示）。*
+
 ```lua
 config.leader = { key = 'a', mods = 'CTRL', timeout_milliseconds = 1000 }
 config.keys = {
@@ -123,6 +127,14 @@ config.keys = {
 ```
 
 ## 回滚缓冲区与滚动条
+
+![效果预览：滚动条开启](/images/11-scrollbar-on.webp)
+
+*效果预览：`enable_scroll_bar = true`，右侧可见滑块（真实 WezTerm 截图；可用 `colors.scrollbar_thumb` 着色）。*
+
+![效果预览：滚动条关闭](/images/12-scrollbar-off.webp)
+
+*效果预览：关闭滚动条后右侧无滑块（真实 WezTerm 截图）。*
 
 ```lua
 -- 每个标签保留的回滚行数上限（越大越占内存）

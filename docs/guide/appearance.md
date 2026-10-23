@@ -19,6 +19,10 @@ return config
 
 可用名称与预览见官方 [Color Schemes](https://wezterm.org/colorschemes/index.html)。
 
+![效果预览：Tokyo Night 配色与热重载](/images/09-light-scheme-hot-reload.webp)
+
+*效果预览：修改 `color_scheme` 后热重载（真实 WezTerm 截图）。*
+
 也可用 `config.colors = { ... }` 精细覆盖前景、背景、光标、ANSI 色、标签栏颜色等。较新版本中：先应用 `color_scheme`，再由 `colors` 覆盖其中字段。
 
 ## 字体
@@ -102,6 +106,10 @@ end)
 return config
 ```
 
+![效果预览：彩色标签 + 状态栏](/images/18-status-tabs.webp)
+
+*效果预览：`use_fancy_tab_bar = false` + `format-tab-title` 着色与右侧状态（真实 WezTerm 截图）。*
+
 ::: tip 字体与标签栏的关系
 - **标签标题字体**：主要取决于 `config.font`（尤其在 `use_fancy_tab_bar = false` 时）。
 - **标签颜色**：通过 `format-tab-title` 返回的 `Background` / `Foreground`，或 `colors.tab_bar` 静态配置。
@@ -125,6 +133,20 @@ config.inactive_pane_hsb = {
 ```
 
 透明度、背景图、渐变等见官方 Appearance 页面中的 `window_background_opacity`、`window_background_image`、`window_background_gradient`。
+
+```lua
+config.window_background_opacity = 0.92
+-- Windows 专属亚克力（Linux/macOS 无效）
+-- config.win32_system_backdrop = 'Acrylic'
+```
+
+![效果预览：半透明（Linux）](/images/17-opacity.webp)
+
+*效果预览：`window_background_opacity = 0.85`（Linux X11 实拍；桌面背景较暗时对比弱）。*
+
+::: warning Windows 专属，示意
+`win32_system_backdrop = 'Acrylic'` / `Mica` 仅 Windows。本站 Linux 截图环境无法诚实展示亚克力模糊，请勿把半透明图当作 Acrylic 效果。
+:::
 
 ## 下一步
 

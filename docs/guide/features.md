@@ -40,6 +40,11 @@ config.default_gui_startup_args = { 'connect', 'unix' }
 
 ## 3. 命令面板 `Ctrl+Shift+P`
 
+
+::: tip 命令面板语言
+内置动作名称**固定英文**，官方无 gettext/locale。可用 `augment-command-palette` **追加**中文条目，或用 `InputSelector` / `launch_menu.label` 做中文菜单。详见 [FAQ：内置命令能不能汉化](./faq.md#内置命令-命令面板能不能汉化)。
+:::
+
 模糊搜索所有可用动作及其快捷键，忘记按键时最实用。
 
 ![命令面板列出所有动作及其默认快捷键](/images/02-command-palette.webp)
@@ -120,6 +125,27 @@ config.ssh_domains = { { name = 'dev', remote_address = 'dev.example.com', usern
 - `window_background_opacity`（0–1）设置透明；Windows 11 可配合 `win32_system_backdrop = 'Acrylic'`。
 - `window_background_image` 或更灵活的 `background` 图层。
 - `wezterm.gui.get_appearance()` 返回 `Dark`/`Light`，配合配置重载即可跟随系统（见 [get_appearance](https://wezterm.org/config/lua/wezterm.gui/get_appearance.html)）。
+
+
+## 命令面板 / 启动器中文变通 {#命令面板--启动器中文变通}
+
+官方无 UI 汉化。推荐组合：
+
+| 手段 | 能否中文 | 说明 |
+| --- | --- | --- |
+| 内置 Command Palette 项 | 否 | `commands.rs` 英文 brief |
+| `augment-command-palette` | 是（追加） | [`brief`/`doc`](https://wezterm.org/config/lua/window-events/augment-command-palette.html) 任意 UTF-8 |
+| `config.keys` 自定义键 | 面板标题仍英文 | 无 description 字段；面板用动作派生英文名 |
+| `InputSelector` | 是 | `title`/`choices.label` |
+| `launch_menu.label` | 是 | 出现在 Launcher / 也可进面板 |
+
+![默认英文命令面板](/images/19-palette-default-en.webp)
+
+*效果预览：内置项英文（真实 WezTerm 截图）。*
+
+![中文追加项](/images/14-palette-zh.webp)
+
+*效果预览：搜索「中文」命中自定义 brief / launch_menu（真实 WezTerm 截图）。*
 
 ## 13. 串口 serial
 
