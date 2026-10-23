@@ -1,0 +1,1 @@
+const e="/wezterm-handbook-zh/images/10-workspaces.webp",o="/wezterm-handbook-zh/images/06-launcher.webp",s="/wezterm-handbook-zh/images/04-copy-mode.webp",a="/wezterm-handbook-zh/images/03-quickselect.webp";export{e as _,o as a,s as b,a as c};
